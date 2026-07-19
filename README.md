@@ -1,5 +1,7 @@
 # concept-atlas
 
+![tests](https://github.com/rohanramachandran/concept-atlas/actions/workflows/ci.yml/badge.svg)
+
 **The knowledge graph *of* the model, not *for* it.**
 
 `concept-atlas` extracts a causal concept graph from a transformer's internals.
@@ -162,13 +164,18 @@ chromatic colors.
 
 A single-page D3 force graph, dark scientific aesthetic, no build step:
 
-- node radius ∝ probe accuracy, color by concept set
-- edge width ∝ |weight|; excitatory and inhibitory edges are visually distinct
-- filter by minimum edge weight and by concept set
-- hover for probe details (home layer, accuracy, effect sizes)
+![explorer demo](static/demo.gif)
 
-It ships with a demo graph (`static/graph.json`) so the UI is inspectable
-before you run any extraction.
+- node radius ∝ probe accuracy, color by concept set
+- edge width ∝ |weight| (scaled to the data's range); excitatory and
+  inhibitory edges are visually distinct
+- filter by minimum edge weight and by concept set
+- hover for probe details (home layer, accuracy, edge counts)
+
+The shipped `static/graph.json` is measured, not mocked: nodes carry the
+home layers and probe accuracies from the Llama-3.1-8B runs, and every edge
+is a patching effect from `experiments/results/`. Regenerate it with
+`python -m experiments.make_graph --model llama`.
 
 ## Project layout
 

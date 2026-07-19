@@ -1,5 +1,12 @@
 # Decisions
 
+## 2026-07-19 (demo and CI)
+
+- CI runs on a macOS runner because the torch wheel there is small; the suite needs no model downloads by design, so the whole workflow is checkout, install, pytest.
+- The explorer's shipped graph.json is now generated from the measured Llama runs (experiments/make_graph.py) instead of hand-written demo data. Patching was extended to professions and countries on both models to give all three sets real edges; every set's diagonal sanity check passed.
+- The explorer was made scale-robust while switching to real data: edge widths and the filter slider now derive from the data's weight range (real logit deltas are 10x the old demo weights), and gentle positional forces keep disconnected components in frame, since within-set patching produces three separate clusters.
+- The README GIF is recorded by a scripted headless browser (settle, hover, drag, filter, isolate a set), so the demo can be re-recorded identically after any UI change.
+
 ## 2026-07-19 (experiments)
 
 - Concept sets went from 4 to 12 templates each (96 prompts per set) so validation splits stop being coin flips; probe accuracies are means over 3 seeds with the spread reported.
