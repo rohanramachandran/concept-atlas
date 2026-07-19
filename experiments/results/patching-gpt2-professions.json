@@ -1,0 +1,154 @@
+{
+ "model": "gpt2",
+ "alias": "gpt2",
+ "set": "professions",
+ "layer": 11,
+ "template": "He trained for years to become a {}.",
+ "base_prompt": "He trained for years to become a",
+ "items": [
+  "doctor",
+  "teacher",
+  "engineer",
+  "lawyer",
+  "chef",
+  "pilot",
+  "farmer",
+  "nurse"
+ ],
+ "matrix": [
+  [
+   0.1977,
+   0.1336,
+   2.4971,
+   -1.8822,
+   -1.796,
+   0.4224,
+   -0.4597,
+   0.8871
+  ],
+  [
+   -1.782,
+   2.3982,
+   2.4772,
+   -2.0349,
+   -1.5218,
+   0.4769,
+   -0.2545,
+   0.2409
+  ],
+  [
+   -1.9628,
+   0.2639,
+   5.2289,
+   -2.2161,
+   -1.6786,
+   1.574,
+   -0.1765,
+   -1.0328
+  ],
+  [
+   -1.5786,
+   0.4721,
+   2.7967,
+   0.9059,
+   -1.9331,
+   0.5998,
+   -0.5911,
+   -0.6715
+  ],
+  [
+   -2.6422,
+   -0.0949,
+   2.5342,
+   -2.5341,
+   3.0152,
+   0.4733,
+   0.2902,
+   -1.0417
+  ],
+  [
+   -2.1277,
+   -0.4726,
+   3.5196,
+   -2.4378,
+   -2.0098,
+   4.7638,
+   -0.514,
+   -0.7215
+  ],
+  [
+   -2.3218,
+   -0.4541,
+   2.9476,
+   -2.6511,
+   -0.7341,
+   0.239,
+   3.8209,
+   -0.8464
+  ],
+  [
+   -0.4306,
+   0.1251,
+   2.0659,
+   -2.349,
+   -1.5925,
+   0.2807,
+   -0.6134,
+   2.5138
+  ]
+ ],
+ "diagonal_median": 2.7645,
+ "off_diagonal_median_abs": 1.0373,
+ "top_edges": [
+  {
+   "source": "pilot",
+   "target": "engineer",
+   "effect": 3.5196402413504444
+  },
+  {
+   "source": "farmer",
+   "target": "engineer",
+   "effect": 2.9475947788783543
+  },
+  {
+   "source": "lawyer",
+   "target": "engineer",
+   "effect": 2.7966766357421733
+  },
+  {
+   "source": "farmer",
+   "target": "lawyer",
+   "effect": -2.651064191545757
+  },
+  {
+   "source": "chef",
+   "target": "doctor",
+   "effect": -2.6421661376953125
+  },
+  {
+   "source": "chef",
+   "target": "engineer",
+   "effect": 2.5341993059430905
+  },
+  {
+   "source": "chef",
+   "target": "lawyer",
+   "effect": -2.5340641566685207
+  },
+  {
+   "source": "doctor",
+   "target": "engineer",
+   "effect": 2.4970768519810207
+  },
+  {
+   "source": "teacher",
+   "target": "engineer",
+   "effect": 2.477207728794653
+  },
+  {
+   "source": "pilot",
+   "target": "lawyer",
+   "effect": -2.437835693359389
+  }
+ ]
+}

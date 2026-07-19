@@ -45,6 +45,44 @@ Base prompt `The color of the object was`; source activations patched tail-align
 
 ![patching gpt2](results/patching-gpt2-colors.png)
 
+### gpt2: countries at layer 11
+
+Base prompt `The documentary was filmed in`; source activations patched tail-aligned at layer 11. Diagonal median +3.286; off-diagonal median absolute effect 0.670.
+
+| source | target | effect |
+|---|---|---|
+| India | Norway | -2.432 |
+| Egypt | Norway | -1.869 |
+| Norway | India | -1.590 |
+| Japan | Egypt | -1.559 |
+| Brazil | Norway | -1.536 |
+| Egypt | Brazil | -1.520 |
+| Kenya | Brazil | -1.489 |
+| Kenya | Norway | -1.377 |
+| Norway | Egypt | -1.363 |
+| Canada | Brazil | -1.324 |
+
+![patching gpt2](results/patching-gpt2-countries.png)
+
+### gpt2: professions at layer 11
+
+Base prompt `He trained for years to become a`; source activations patched tail-aligned at layer 11. Diagonal median +2.764; off-diagonal median absolute effect 1.037.
+
+| source | target | effect |
+|---|---|---|
+| pilot | engineer | +3.520 |
+| farmer | engineer | +2.948 |
+| lawyer | engineer | +2.797 |
+| farmer | lawyer | -2.651 |
+| chef | doctor | -2.642 |
+| chef | engineer | +2.534 |
+| chef | lawyer | -2.534 |
+| doctor | engineer | +2.497 |
+| teacher | engineer | +2.477 |
+| pilot | lawyer | -2.438 |
+
+![patching gpt2](results/patching-gpt2-professions.png)
+
 ### llama: colors at layer 29
 
 Base prompt `The color of the object was`; source activations patched tail-aligned at layer 29. Diagonal median +5.320; off-diagonal median absolute effect 0.854.
@@ -63,6 +101,44 @@ Base prompt `The color of the object was`; source activations patched tail-align
 | purple | red | -1.298 |
 
 ![patching llama](results/patching-llama-colors.png)
+
+### llama: countries at layer 24
+
+Base prompt `The documentary was filmed in`; source activations patched tail-aligned at layer 24. Diagonal median +6.549; off-diagonal median absolute effect 1.250.
+
+| source | target | effect |
+|---|---|---|
+| Norway | Kenya | -3.212 |
+| Norway | India | -3.122 |
+| Brazil | Kenya | -3.026 |
+| France | Kenya | -2.867 |
+| Norway | Egypt | -2.406 |
+| Japan | Kenya | -2.273 |
+| Kenya | France | -2.266 |
+| Egypt | Norway | -2.175 |
+| Kenya | India | -2.065 |
+| Canada | Kenya | -2.035 |
+
+![patching llama](results/patching-llama-countries.png)
+
+### llama: professions at layer 29
+
+Base prompt `He trained for years to become a`; source activations patched tail-aligned at layer 29. Diagonal median +5.959; off-diagonal median absolute effect 1.658.
+
+| source | target | effect |
+|---|---|---|
+| engineer | chef | -4.359 |
+| lawyer | chef | -4.211 |
+| nurse | chef | -4.203 |
+| pilot | engineer | +4.038 |
+| doctor | chef | -4.036 |
+| pilot | chef | -3.734 |
+| nurse | pilot | -3.452 |
+| pilot | doctor | -3.441 |
+| teacher | chef | -3.415 |
+| doctor | engineer | +3.338 |
+
+![patching llama](results/patching-llama-professions.png)
 
 ## Notes
 

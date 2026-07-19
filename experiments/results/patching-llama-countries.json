@@ -1,0 +1,154 @@
+{
+ "model": "mlx-community/Llama-3.1-8B-Instruct-4bit",
+ "alias": "llama",
+ "set": "countries",
+ "layer": 24,
+ "template": "The documentary was filmed in {}.",
+ "base_prompt": "The documentary was filmed in",
+ "items": [
+  "France",
+  "Japan",
+  "Brazil",
+  "Egypt",
+  "Canada",
+  "India",
+  "Kenya",
+  "Norway"
+ ],
+ "matrix": [
+  [
+   4.8783,
+   -0.452,
+   -0.1931,
+   0.1417,
+   1.5123,
+   -1.8002,
+   -2.8672,
+   -1.2199
+  ],
+  [
+   -1.572,
+   6.2182,
+   -0.1657,
+   -0.3666,
+   1.245,
+   -1.4916,
+   -2.2729,
+   -1.5943
+  ],
+  [
+   -1.3292,
+   -0.4275,
+   6.8806,
+   0.327,
+   0.8806,
+   -1.74,
+   -3.0257,
+   -1.5658
+  ],
+  [
+   -1.8086,
+   -1.255,
+   -1.072,
+   8.6155,
+   0.1735,
+   -1.8979,
+   -0.5809,
+   -2.1747
+  ],
+  [
+   -0.7182,
+   -0.5798,
+   -0.2003,
+   -1.0887,
+   6.88,
+   -1.7539,
+   -2.0352,
+   -0.5039
+  ],
+  [
+   -1.6719,
+   -0.4487,
+   -0.7924,
+   0.1049,
+   0.4219,
+   5.7701,
+   -1.4888,
+   -1.8951
+  ],
+  [
+   -2.2662,
+   -1.0608,
+   -0.8823,
+   0.9615,
+   0.8588,
+   -2.0653,
+   5.7785,
+   -1.3242
+  ],
+  [
+   -0.877,
+   -0.1537,
+   -1.7609,
+   -2.406,
+   1.8998,
+   -3.1225,
+   -3.2118,
+   9.632
+  ]
+ ],
+ "diagonal_median": 6.5491,
+ "off_diagonal_median_abs": 1.25,
+ "top_edges": [
+  {
+   "source": "Norway",
+   "target": "Kenya",
+   "effect": -3.211774553571428
+  },
+  {
+   "source": "Norway",
+   "target": "India",
+   "effect": -3.1224888392857135
+  },
+  {
+   "source": "Brazil",
+   "target": "Kenya",
+   "effect": -3.0256696428571423
+  },
+  {
+   "source": "France",
+   "target": "Kenya",
+   "effect": -2.867187499999999
+  },
+  {
+   "source": "Norway",
+   "target": "Egypt",
+   "effect": -2.4059709821428568
+  },
+  {
+   "source": "Japan",
+   "target": "Kenya",
+   "effect": -2.2728794642857135
+  },
+  {
+   "source": "Kenya",
+   "target": "France",
+   "effect": -2.2661830357142865
+  },
+  {
+   "source": "Egypt",
+   "target": "Norway",
+   "effect": -2.174665178571428
+  },
+  {
+   "source": "Kenya",
+   "target": "India",
+   "effect": -2.065290178571428
+  },
+  {
+   "source": "Canada",
+   "target": "Kenya",
+   "effect": -2.035156249999999
+  }
+ ]
+}

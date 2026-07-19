@@ -1,0 +1,154 @@
+{
+ "model": "mlx-community/Llama-3.1-8B-Instruct-4bit",
+ "alias": "llama",
+ "set": "professions",
+ "layer": 29,
+ "template": "He trained for years to become a {}.",
+ "base_prompt": "He trained for years to become a",
+ "items": [
+  "doctor",
+  "teacher",
+  "engineer",
+  "lawyer",
+  "chef",
+  "pilot",
+  "farmer",
+  "nurse"
+ ],
+ "matrix": [
+  [
+   1.0882,
+   1.0926,
+   3.3376,
+   0.173,
+   -4.0357,
+   -2.9129,
+   -0.4849,
+   1.7422
+  ],
+  [
+   -1.2486,
+   6.3764,
+   2.8731,
+   -0.2731,
+   -3.4147,
+   -3.291,
+   -0.2466,
+   -0.7756
+  ],
+  [
+   -1.5746,
+   1.0459,
+   10.575,
+   -0.4384,
+   -4.3589,
+   -3.1873,
+   -0.5791,
+   -1.4825
+  ],
+  [
+   -0.8691,
+   1.3898,
+   2.8166,
+   5.5416,
+   -4.2112,
+   -3.0242,
+   -0.69,
+   -0.9535
+  ],
+  [
+   -2.6319,
+   0.607,
+   2.8687,
+   -1.1157,
+   4.9474,
+   -3.0021,
+   0.5668,
+   -2.2401
+  ],
+  [
+   -3.4405,
+   0.8921,
+   4.0383,
+   -1.7712,
+   -3.7341,
+   5.0427,
+   0.1733,
+   -1.2006
+  ],
+  [
+   -2.7637,
+   1.0755,
+   2.7851,
+   -1.1259,
+   -2.675,
+   -3.158,
+   8.1693,
+   -2.3073
+  ],
+  [
+   -1.0997,
+   1.1837,
+   2.4801,
+   -1.1801,
+   -4.2035,
+   -3.4524,
+   -0.8984,
+   7.1704
+  ]
+ ],
+ "diagonal_median": 5.959,
+ "off_diagonal_median_abs": 1.6584,
+ "top_edges": [
+  {
+   "source": "engineer",
+   "target": "chef",
+   "effect": -4.358921595982144
+  },
+  {
+   "source": "lawyer",
+   "target": "chef",
+   "effect": -4.211181640625001
+  },
+  {
+   "source": "nurse",
+   "target": "chef",
+   "effect": -4.203480311802457
+  },
+  {
+   "source": "pilot",
+   "target": "engineer",
+   "effect": 4.0382603236607135
+  },
+  {
+   "source": "doctor",
+   "target": "chef",
+   "effect": -4.0357142857142865
+  },
+  {
+   "source": "pilot",
+   "target": "chef",
+   "effect": -3.7340611049107153
+  },
+  {
+   "source": "nurse",
+   "target": "pilot",
+   "effect": -3.4524165562220976
+  },
+  {
+   "source": "pilot",
+   "target": "doctor",
+   "effect": -3.4405343191964284
+  },
+  {
+   "source": "teacher",
+   "target": "chef",
+   "effect": -3.4147077287946437
+  },
+  {
+   "source": "doctor",
+   "target": "engineer",
+   "effect": 3.3376116071428568
+  }
+ ]
+}
