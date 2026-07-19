@@ -66,3 +66,34 @@ def causal_effect(
     with patch_residual(model, layer, source_acts, positions=positions):
         patched_metric = metric(_logits(model(base_ids)))
     return patched_metric - base_metric
+
+
+@torch.no_grad()
+def pairwise_effects(
+    model: nn.Module,
+    inputs_by_concept: dict[str, torch.Tensor],
+    metrics_by_concept: dict[str, Metric],
+    layer: int,
+    *,
+    positions: Sequence[int] | None = None,
+) -> dict[tuple[str, str], float]:
+    """Measure ``source -> target`` effects for every ordered concept pair.
+
+    For each pair (a, b), patches a's activations into b's base run and
+    evaluates b's metric. Returns ``{(a, b): effect}`` for all a != b —
+    the raw material for a causal concept graph.
+    """
+    effects: dict[tuple[str, str], float] = {}
+    for src_name, src_ids in inputs_by_concept.items():
+        for tgt_name, tgt_ids in inputs_by_concept.items():
+            if src_name == tgt_name:
+                continue
+            effects[(src_name, tgt_name)] = causal_effect(
+                model,
+                base_ids=tgt_ids,
+                source_ids=src_ids,
+                layer=layer,
+                positions=positions,
+                metric=metrics_by_concept[tgt_name],
+            )
+    return effects
