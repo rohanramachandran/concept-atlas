@@ -68,6 +68,37 @@ reports = sweep_layers(acts, labels=torch.tensor([0, 1]))
 The layer with peak probe accuracy is taken as the concept's *home layer* —
 where the model most linearly represents it.
 
+### Scaling: backends and the activation cache
+
+Everything downstream of a model consumes plain numpy arrays through a small
+backend interface (`src/backends.py`), so probing and graph code never touch
+framework specifics:
+
+- **`TorchBackend`** wraps any Hugging Face causal LM with forward hooks,
+  with attention-mask-correct last-token capture under padding.
+- **`MlxBackend`** runs 4-bit quantized models through `mlx_lm`
+  (`pip install -e ".[mlx]"`). MLX has no hook API, so the backend temporarily
+  swaps entries of the model's layer list for taps that record or replace a
+  block's output. Same two capabilities as hooks, quantized weights, and
+  Llama-3.1-8B fits comfortably on a laptop.
+
+Activations are collected in prompt chunks and appended to per-layer
+memory-mapped arrays on disk (`src/activation_store.py`; runs land under
+`activations/`, gitignored), so peak RAM stays at one chunk regardless of
+corpus size. The whole pipeline is one command:
+
+```bash
+python -m src.extract --backend torch --model gpt2 --concepts colors
+python -m src.extract --backend mlx \
+    --model mlx-community/Llama-3.1-8B-Instruct-4bit --concepts colors
+```
+
+Each run directory carries provenance (`meta.json`), the cached layers,
+labels, and the per-layer probe report (`probes.json`). A backend-agnostic
+`causal_effect` lives in `src/backends.py`; when base and source prompts
+tokenize to different lengths, patches are tail-aligned, since concept
+templates differ near the end and metrics read the final position.
+
 ### 2. Patching (`src/patching.py`)
 
 For a candidate edge A → B, we run the model on a base prompt, patch in the
@@ -121,12 +152,15 @@ before you run any extraction.
 
 ```
 src/
-  hooks.py      # residual-stream capture + activation patching hooks
-  probes.py     # linear probes, per-layer sweep, accuracy reports
-  patching.py   # causal-effect measurement between concept pairs
-  graph.py      # typed weighted graph, pruning, JSON (D3) export
-  api.py        # FastAPI app: /api/* endpoints + static explorer
-tests/          # pytest suite (runs on a toy transformer; no downloads)
+  hooks.py             # residual-stream capture + activation patching hooks (torch)
+  backends.py          # model-agnostic capture/patch interface: torch + MLX backends
+  activation_store.py  # chunked on-disk activation cache (per-layer memmaps)
+  extract.py           # CLI: concept set -> cached activations -> probe sweep
+  probes.py            # linear probes, per-layer sweep, accuracy reports
+  patching.py          # causal-effect measurement between concept pairs
+  graph.py             # typed weighted graph, pruning, JSON (D3) export
+  api.py               # FastAPI app: /api/* endpoints + static explorer
+tests/          # pytest suite (runs on toy models; no downloads)
 static/         # D3 explorer (index.html, app.js, style.css, graph.json)
 concepts/       # seed concept sets (colors, professions, countries)
 ```

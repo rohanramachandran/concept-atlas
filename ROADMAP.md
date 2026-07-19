@@ -3,7 +3,8 @@
 ## M1 — Probing
 - [x] Train/evaluate linear probes on residual-stream activations
 - [x] Report layer-wise accuracy (`sweep_layers`)
-- [ ] Batched activation collection for large concept sets
+- [x] Batched activation collection for large concept sets (chunked disk cache)
+- [x] Model-agnostic backends: torch hooks + MLX layer taps (Llama-3.1-8B 4-bit)
 
 ## M2 — Causal graph
 - [x] Activation patching between concept pairs
