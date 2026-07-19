@@ -29,3 +29,60 @@ class LinearProbe(nn.Module):
     def accuracy(self, x: torch.Tensor, y: torch.Tensor) -> float:
         preds = self(x).argmax(dim=-1)
         return (preds == y).float().mean().item()
+
+
+@dataclass(frozen=True)
+class ProbeReport:
+    """Per-layer probe result from a sweep."""
+
+    layer: int
+    accuracy: float
+    n_train: int
+    n_val: int
+
+
+def train_probe(
+    x: torch.Tensor,
+    y: torch.Tensor,
+    *,
+    epochs: int = 200,
+    lr: float = 1e-2,
+    weight_decay: float = 1e-3,
+    val_frac: float = 0.2,
+    seed: int = 0,
+) -> tuple[LinearProbe, float]:
+    """Train a probe on ``(n, d_model)`` activations; return (probe, val accuracy).
+
+    Deterministic for a fixed seed. Full-batch Adam is plenty for the small
+    activation sets produced by concept templates.
+    """
+    if x.ndim != 2:
+        raise ValueError(f"expected (n, d_model) activations, got shape {tuple(x.shape)}")
+    x = x.float()
+    y = y.long()
+    n = x.shape[0]
+    n_classes = int(y.max().item()) + 1
+
+    gen = torch.Generator().manual_seed(seed)
+    perm = torch.randperm(n, generator=gen)
+    n_val = int(n * val_frac)
+    val_idx, train_idx = perm[:n_val], perm[n_val:]
+    x_train, y_train = x[train_idx], y[train_idx]
+    x_val, y_val = x[val_idx], y[val_idx]
+
+    probe = LinearProbe(x.shape[1], n_classes)
+    probe.mu.copy_(x_train.mean(dim=0))
+    probe.sigma.copy_(x_train.std(dim=0).clamp_min(1e-6))
+
+    opt = torch.optim.Adam(probe.parameters(), lr=lr, weight_decay=weight_decay)
+    loss_fn = nn.CrossEntropyLoss()
+    probe.train()
+    for _ in range(epochs):
+        opt.zero_grad()
+        loss = loss_fn(probe(x_train), y_train)
+        loss.backward()
+        opt.step()
+    probe.eval()
+
+    acc = probe.accuracy(x_val, y_val) if n_val > 0 else probe.accuracy(x_train, y_train)
+    return probe, acc
