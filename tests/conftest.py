@@ -48,6 +48,9 @@ class ToyTokenizer:
     def _ids(self, text: str) -> list[int]:
         return [3 + (ord(c) % 7) for c in text]
 
+    def encode(self, text: str, add_special_tokens: bool = True) -> list[int]:
+        return self._ids(text)
+
     def __call__(self, texts, return_tensors="pt", padding=True):
         ids = [self._ids(t) for t in texts]
         width = max(len(i) for i in ids)

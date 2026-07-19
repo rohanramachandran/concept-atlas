@@ -67,6 +67,10 @@ class Backend(abc.ABC):
     def logits(self, text: str, patch: tuple[int, np.ndarray, Sequence[int] | None] | None = None) -> np.ndarray:
         """Output logits ``(1, seq, vocab)``, optionally with ``(layer, acts, positions)`` patched in."""
 
+    @abc.abstractmethod
+    def token_ids(self, text: str) -> list[int]:
+        """Tokenize without special tokens; used to build logit metrics."""
+
     def iter_last_token(
         self, texts: Sequence[str], layers: Sequence[int], chunk_size: int = 8,
     ) -> Iterator[dict[int, np.ndarray]]:
@@ -127,6 +131,9 @@ class TorchBackend(Backend):
     def _encode(self, texts: Sequence[str]):
         enc = self.tokenizer(list(texts), return_tensors="pt", padding=True)
         return enc["input_ids"].to(self.device), enc["attention_mask"].to(self.device)
+
+    def token_ids(self, text: str) -> list[int]:
+        return list(self.tokenizer.encode(text, add_special_tokens=False))
 
     def capture_last_token(self, texts: Sequence[str], layers: Sequence[int]) -> dict[int, np.ndarray]:
         from src.hooks import ResidualCache
@@ -285,6 +292,9 @@ class MlxBackend(Backend):
             tap.patch = (np.asarray(acts, dtype=np.float32), positions)
             taps[layer] = tap
         return self._forward(text, taps)
+
+    def token_ids(self, text: str) -> list[int]:
+        return list(self.tokenizer.encode(text, add_special_tokens=False))
 
 
 def causal_effect(
