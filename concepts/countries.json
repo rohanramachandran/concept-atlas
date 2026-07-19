@@ -1,0 +1,10 @@
+{
+  "name": "countries",
+  "items": ["France", "Japan", "Brazil", "Egypt", "Canada", "India", "Kenya", "Norway"],
+  "templates": [
+    "She flew to {} last spring.",
+    "The package was shipped from {}.",
+    "He grew up in {}.",
+    "The capital of {} is a busy city."
+  ]
+}
