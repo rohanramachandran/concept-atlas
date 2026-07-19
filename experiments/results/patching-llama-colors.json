@@ -1,0 +1,154 @@
+{
+ "model": "mlx-community/Llama-3.1-8B-Instruct-4bit",
+ "alias": "llama",
+ "set": "colors",
+ "layer": 29,
+ "template": "The color of the object was {}.",
+ "base_prompt": "The color of the object was",
+ "items": [
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "purple",
+  "black",
+  "white"
+ ],
+ "matrix": [
+  [
+   3.3856,
+   -0.0653,
+   -0.7305,
+   -0.4939,
+   -0.9939,
+   -0.976,
+   -0.0921,
+   -0.034
+  ],
+  [
+   -0.2522,
+   5.8192,
+   0.0379,
+   -1.3058,
+   -1.4933,
+   -0.3996,
+   -1.5424,
+   -0.8638
+  ],
+  [
+   -0.947,
+   0.2896,
+   4.1914,
+   -0.7997,
+   -1.13,
+   -1.13,
+   -0.4648,
+   -0.0095
+  ],
+  [
+   -0.4492,
+   -0.3867,
+   -0.7394,
+   5.1401,
+   -1.2126,
+   -1.0474,
+   -0.7081,
+   -0.5965
+  ],
+  [
+   -0.4972,
+   -0.1401,
+   -0.9124,
+   -0.5642,
+   2.6546,
+   -0.2695,
+   -0.1401,
+   -0.1311
+  ],
+  [
+   -1.298,
+   -0.1462,
+   -0.7132,
+   -1.1194,
+   -1.423,
+   6.7154,
+   -0.9453,
+   -1.0703
+  ],
+  [
+   -1.2536,
+   -0.8206,
+   -1.3474,
+   -1.0483,
+   -1.1911,
+   -1.3585,
+   5.5008,
+   1.5187
+  ],
+  [
+   -1.1387,
+   -0.4914,
+   -0.844,
+   -1.478,
+   -1.2101,
+   -1.4579,
+   1.1203,
+   5.4997
+  ]
+ ],
+ "diagonal_median": 5.3199,
+ "off_diagonal_median_abs": 0.8539,
+ "top_edges": [
+  {
+   "source": "orange",
+   "target": "black",
+   "effect": -1.5424107142857144
+  },
+  {
+   "source": "black",
+   "target": "white",
+   "effect": 1.518694196428572
+  },
+  {
+   "source": "orange",
+   "target": "blue",
+   "effect": -1.493303571428572
+  },
+  {
+   "source": "white",
+   "target": "green",
+   "effect": -1.4779575892857135
+  },
+  {
+   "source": "white",
+   "target": "purple",
+   "effect": -1.457868303571428
+  },
+  {
+   "source": "purple",
+   "target": "blue",
+   "effect": -1.422991071428572
+  },
+  {
+   "source": "black",
+   "target": "purple",
+   "effect": -1.3585379464285712
+  },
+  {
+   "source": "black",
+   "target": "yellow",
+   "effect": -1.3473772321428568
+  },
+  {
+   "source": "orange",
+   "target": "green",
+   "effect": -1.3058035714285712
+  },
+  {
+   "source": "purple",
+   "target": "red",
+   "effect": -1.297991071428572
+  }
+ ]
+}
