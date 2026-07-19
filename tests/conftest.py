@@ -40,6 +40,47 @@ class ToyModel(nn.Module):
         return self.head(x)
 
 
+class ToyTokenizer:
+    """Character tokenizer with HF-style padded batch output (right padding)."""
+
+    pad_id = 0
+
+    def _ids(self, text: str) -> list[int]:
+        return [3 + (ord(c) % 7) for c in text]
+
+    def __call__(self, texts, return_tensors="pt", padding=True):
+        ids = [self._ids(t) for t in texts]
+        width = max(len(i) for i in ids)
+        input_ids = torch.tensor([i + [self.pad_id] * (width - len(i)) for i in ids])
+        mask = torch.tensor([[1] * len(i) + [0] * (width - len(i)) for i in ids])
+        return {"input_ids": input_ids, "attention_mask": mask}
+
+
+class ToyLM(nn.Module):
+    """Token-in, logits-out toy model for backend tests. Ignores the mask."""
+
+    def __init__(self, d_model: int = D_MODEL, n_layers: int = N_LAYERS, vocab: int = VOCAB):
+        super().__init__()
+        self.embed = nn.Embedding(vocab, d_model)
+        self.blocks = nn.ModuleList(ToyBlock(d_model) for _ in range(n_layers))
+        self.head = nn.Linear(d_model, vocab)
+
+    def forward(self, input_ids: torch.Tensor, attention_mask: torch.Tensor | None = None):
+        x = self.embed(input_ids)
+        for block in self.blocks:
+            x = block(x)
+        return self.head(x)
+
+
+@pytest.fixture()
+def toy_backend():
+    from src.backends import TorchBackend
+
+    torch.manual_seed(0)
+    model = ToyLM().eval()
+    return TorchBackend(model, ToyTokenizer(), d_model=D_MODEL, device="cpu", model_name="toy")
+
+
 @pytest.fixture()
 def toy_model() -> ToyModel:
     torch.manual_seed(0)
