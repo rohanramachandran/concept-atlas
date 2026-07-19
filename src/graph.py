@@ -57,3 +57,26 @@ class ConceptGraph:
     def prune(self, min_weight: float) -> None:
         """Drop edges with |weight| below ``min_weight``."""
         self.edges = [e for e in self.edges if abs(e.weight) >= min_weight]
+
+    # -- serialization -------------------------------------------------------
+
+    def to_dict(self) -> dict:
+        return {
+            "meta": {"model": self.model_name, "format": "concept-atlas/v1"},
+            "nodes": [asdict(n) for n in self.nodes],
+            "links": [asdict(e) for e in self.edges],
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "ConceptGraph":
+        graph = cls(model_name=data.get("meta", {}).get("model", "unknown"))
+        graph.nodes = [ConceptNode(**n) for n in data["nodes"]]
+        graph.edges = [CausalEdge(**e) for e in data["links"]]
+        return graph
+
+    def save(self, path: str | Path) -> None:
+        Path(path).write_text(json.dumps(self.to_dict(), indent=2))
+
+    @classmethod
+    def load(cls, path: str | Path) -> "ConceptGraph":
+        return cls.from_dict(json.loads(Path(path).read_text()))
