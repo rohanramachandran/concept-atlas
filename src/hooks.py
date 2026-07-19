@@ -82,3 +82,37 @@ class ResidualCache:
         for handle in self._handles:
             handle.remove()
         self._handles.clear()
+
+
+@contextmanager
+def patch_residual(
+    model: nn.Module,
+    layer: int,
+    replacement: torch.Tensor,
+    positions: Sequence[int] | None = None,
+):
+    """Within the context, replace block ``layer``'s output hidden states.
+
+    ``replacement`` must broadcast against the block's output. If
+    ``positions`` is given, only those sequence positions are replaced;
+    otherwise the entire hidden state is swapped.
+    """
+    blocks = resolve_blocks(model)
+
+    def hook(_module: nn.Module, _inputs: tuple, output: object):
+        h = _hidden(output)
+        r = replacement.to(device=h.device, dtype=h.dtype)
+        if positions is None:
+            new = r
+        else:
+            new = h.clone()
+            new[:, list(positions), :] = r[:, list(positions), :]
+        if isinstance(output, tuple):
+            return (new,) + tuple(output[1:])
+        return new
+
+    handle = blocks[layer].register_forward_hook(hook)
+    try:
+        yield
+    finally:
+        handle.remove()
