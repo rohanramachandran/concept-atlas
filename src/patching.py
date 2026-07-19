@@ -40,3 +40,29 @@ def logit_diff_metric(
         return score.item()
 
     return metric
+
+
+@torch.no_grad()
+def causal_effect(
+    model: nn.Module,
+    base_ids: torch.Tensor,
+    source_ids: torch.Tensor,
+    layer: int,
+    *,
+    positions: Sequence[int] | None = None,
+    metric: Metric,
+) -> float:
+    """Effect of patching ``source`` activations into ``base`` at ``layer``.
+
+    Returns ``metric(patched logits) - metric(base logits)``. Positive values
+    mean the source activations push the metric up (excitatory edge);
+    negative values, down (inhibitory edge).
+    """
+    with ResidualCache(model, layers=[layer]) as cache:
+        model(source_ids)
+    source_acts = cache.activations[layer]
+
+    base_metric = metric(_logits(model(base_ids)))
+    with patch_residual(model, layer, source_acts, positions=positions):
+        patched_metric = metric(_logits(model(base_ids)))
+    return patched_metric - base_metric
