@@ -86,3 +86,30 @@ def train_probe(
 
     acc = probe.accuracy(x_val, y_val) if n_val > 0 else probe.accuracy(x_train, y_train)
     return probe, acc
+
+
+def sweep_layers(
+    activations: dict[int, torch.Tensor],
+    labels: torch.Tensor,
+    **train_kwargs: object,
+) -> list[ProbeReport]:
+    """Train one probe per layer; return reports sorted by layer index.
+
+    ``activations`` maps layer index to ``(n, d_model)`` tensors (e.g. the
+    last-token slice of a ``ResidualCache``).
+    """
+    reports = []
+    for layer in sorted(activations):
+        x = activations[layer]
+        _, acc = train_probe(x, labels, **train_kwargs)  # type: ignore[arg-type]
+        n = x.shape[0]
+        n_val = int(n * float(train_kwargs.get("val_frac", 0.2)))  # type: ignore[arg-type]
+        reports.append(ProbeReport(layer=layer, accuracy=acc, n_train=n - n_val, n_val=n_val))
+    return reports
+
+
+def best_layer(reports: list[ProbeReport]) -> ProbeReport:
+    """The report with peak accuracy (ties break toward earlier layers)."""
+    if not reports:
+        raise ValueError("no probe reports")
+    return max(reports, key=lambda r: (r.accuracy, -r.layer))
