@@ -21,6 +21,8 @@ function render(data) {
   const groups = [...new Set(data.nodes.map((n) => n.group))];
   const color = d3.scaleOrdinal(groups, GROUP_COLORS);
   const radius = d3.scaleLinear([0.5, 1], [5, 14]).clamp(true);
+  const maxWeight = d3.max(data.links, (d) => Math.abs(d.weight)) || 1;
+  const edgeWidth = d3.scaleLinear([0, maxWeight], [0.6, 5]);
   const width = stage.clientWidth;
   const height = stage.clientHeight;
 
@@ -55,7 +57,7 @@ function render(data) {
     .data(data.links)
     .join("line")
     .attr("stroke", (d) => EDGE_COLOR[d.kind])
-    .attr("stroke-width", (d) => 1 + 6 * Math.abs(d.weight))
+    .attr("stroke-width", (d) => edgeWidth(Math.abs(d.weight)))
     .attr("stroke-opacity", 0.75)
     .attr("marker-end", (d) => `url(#arrow-${d.kind})`);
 
@@ -85,6 +87,8 @@ function render(data) {
     .force("link", d3.forceLink(data.links).id((d) => d.id).distance(90))
     .force("charge", d3.forceManyBody().strength(-260))
     .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("x", d3.forceX(width / 2).strength(0.07))
+    .force("y", d3.forceY(height / 2).strength(0.09))
     .force("collide", d3.forceCollide().radius((d) => radius(d.accuracy) + 6))
     .on("tick", () => {
       link
@@ -112,6 +116,8 @@ function render(data) {
   }
 
   const slider = document.getElementById("weight-filter");
+  slider.max = maxWeight.toFixed(2);
+  slider.step = (maxWeight / 100).toFixed(3);
   slider.addEventListener("input", () => {
     minWeight = +slider.value;
     document.getElementById("weight-value").textContent = minWeight.toFixed(2);

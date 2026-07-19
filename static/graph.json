@@ -1,34 +1,850 @@
 {
-  "meta": { "model": "gpt2 (demo data)", "format": "concept-atlas/v1" },
+  "meta": {
+    "model": "mlx-community/Llama-3.1-8B-Instruct-4bit (measured)",
+    "format": "concept-atlas/v1"
+  },
   "nodes": [
-    { "id": "red", "name": "red", "group": "colors", "layer": 6, "accuracy": 0.94 },
-    { "id": "blue", "name": "blue", "group": "colors", "layer": 6, "accuracy": 0.92 },
-    { "id": "green", "name": "green", "group": "colors", "layer": 5, "accuracy": 0.90 },
-    { "id": "purple", "name": "purple", "group": "colors", "layer": 7, "accuracy": 0.83 },
-    { "id": "doctor", "name": "doctor", "group": "professions", "layer": 8, "accuracy": 0.91 },
-    { "id": "nurse", "name": "nurse", "group": "professions", "layer": 8, "accuracy": 0.89 },
-    { "id": "engineer", "name": "engineer", "group": "professions", "layer": 9, "accuracy": 0.87 },
-    { "id": "chef", "name": "chef", "group": "professions", "layer": 7, "accuracy": 0.85 },
-    { "id": "France", "name": "France", "group": "countries", "layer": 9, "accuracy": 0.95 },
-    { "id": "Japan", "name": "Japan", "group": "countries", "layer": 9, "accuracy": 0.96 },
-    { "id": "Brazil", "name": "Brazil", "group": "countries", "layer": 10, "accuracy": 0.93 },
-    { "id": "Kenya", "name": "Kenya", "group": "countries", "layer": 10, "accuracy": 0.88 }
+    {
+      "id": "red",
+      "name": "red",
+      "group": "colors",
+      "layer": 29,
+      "accuracy": 0.614
+    },
+    {
+      "id": "orange",
+      "name": "orange",
+      "group": "colors",
+      "layer": 29,
+      "accuracy": 0.614
+    },
+    {
+      "id": "yellow",
+      "name": "yellow",
+      "group": "colors",
+      "layer": 29,
+      "accuracy": 0.614
+    },
+    {
+      "id": "green",
+      "name": "green",
+      "group": "colors",
+      "layer": 29,
+      "accuracy": 0.614
+    },
+    {
+      "id": "blue",
+      "name": "blue",
+      "group": "colors",
+      "layer": 29,
+      "accuracy": 0.614
+    },
+    {
+      "id": "purple",
+      "name": "purple",
+      "group": "colors",
+      "layer": 29,
+      "accuracy": 0.614
+    },
+    {
+      "id": "black",
+      "name": "black",
+      "group": "colors",
+      "layer": 29,
+      "accuracy": 0.614
+    },
+    {
+      "id": "white",
+      "name": "white",
+      "group": "colors",
+      "layer": 29,
+      "accuracy": 0.614
+    },
+    {
+      "id": "doctor",
+      "name": "doctor",
+      "group": "professions",
+      "layer": 29,
+      "accuracy": 0.86
+    },
+    {
+      "id": "teacher",
+      "name": "teacher",
+      "group": "professions",
+      "layer": 29,
+      "accuracy": 0.86
+    },
+    {
+      "id": "engineer",
+      "name": "engineer",
+      "group": "professions",
+      "layer": 29,
+      "accuracy": 0.86
+    },
+    {
+      "id": "lawyer",
+      "name": "lawyer",
+      "group": "professions",
+      "layer": 29,
+      "accuracy": 0.86
+    },
+    {
+      "id": "chef",
+      "name": "chef",
+      "group": "professions",
+      "layer": 29,
+      "accuracy": 0.86
+    },
+    {
+      "id": "pilot",
+      "name": "pilot",
+      "group": "professions",
+      "layer": 29,
+      "accuracy": 0.86
+    },
+    {
+      "id": "farmer",
+      "name": "farmer",
+      "group": "professions",
+      "layer": 29,
+      "accuracy": 0.86
+    },
+    {
+      "id": "nurse",
+      "name": "nurse",
+      "group": "professions",
+      "layer": 29,
+      "accuracy": 0.86
+    },
+    {
+      "id": "France",
+      "name": "France",
+      "group": "countries",
+      "layer": 24,
+      "accuracy": 0.93
+    },
+    {
+      "id": "Japan",
+      "name": "Japan",
+      "group": "countries",
+      "layer": 24,
+      "accuracy": 0.93
+    },
+    {
+      "id": "Brazil",
+      "name": "Brazil",
+      "group": "countries",
+      "layer": 24,
+      "accuracy": 0.93
+    },
+    {
+      "id": "Egypt",
+      "name": "Egypt",
+      "group": "countries",
+      "layer": 24,
+      "accuracy": 0.93
+    },
+    {
+      "id": "Canada",
+      "name": "Canada",
+      "group": "countries",
+      "layer": 24,
+      "accuracy": 0.93
+    },
+    {
+      "id": "India",
+      "name": "India",
+      "group": "countries",
+      "layer": 24,
+      "accuracy": 0.93
+    },
+    {
+      "id": "Kenya",
+      "name": "Kenya",
+      "group": "countries",
+      "layer": 24,
+      "accuracy": 0.93
+    },
+    {
+      "id": "Norway",
+      "name": "Norway",
+      "group": "countries",
+      "layer": 24,
+      "accuracy": 0.93
+    }
   ],
   "links": [
-    { "source": "red", "target": "blue", "weight": -0.31, "kind": "inhibitory", "layer": 6 },
-    { "source": "blue", "target": "green", "weight": 0.22, "kind": "excitatory", "layer": 6 },
-    { "source": "red", "target": "purple", "weight": 0.27, "kind": "excitatory", "layer": 6 },
-    { "source": "blue", "target": "purple", "weight": 0.24, "kind": "excitatory", "layer": 6 },
-    { "source": "doctor", "target": "nurse", "weight": 0.44, "kind": "excitatory", "layer": 8 },
-    { "source": "nurse", "target": "doctor", "weight": 0.38, "kind": "excitatory", "layer": 8 },
-    { "source": "doctor", "target": "engineer", "weight": -0.12, "kind": "inhibitory", "layer": 8 },
-    { "source": "chef", "target": "doctor", "weight": -0.08, "kind": "inhibitory", "layer": 8 },
-    { "source": "France", "target": "Japan", "weight": 0.19, "kind": "excitatory", "layer": 9 },
-    { "source": "Japan", "target": "Brazil", "weight": 0.15, "kind": "excitatory", "layer": 9 },
-    { "source": "France", "target": "Kenya", "weight": 0.11, "kind": "excitatory", "layer": 9 },
-    { "source": "Brazil", "target": "Kenya", "weight": 0.17, "kind": "excitatory", "layer": 10 },
-    { "source": "France", "target": "chef", "weight": 0.21, "kind": "excitatory", "layer": 9 },
-    { "source": "Japan", "target": "engineer", "weight": 0.13, "kind": "excitatory", "layer": 9 },
-    { "source": "doctor", "target": "red", "weight": -0.06, "kind": "inhibitory", "layer": 7 }
+    {
+      "source": "orange",
+      "target": "green",
+      "weight": -1.306,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "orange",
+      "target": "blue",
+      "weight": -1.493,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "orange",
+      "target": "black",
+      "weight": -1.542,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "yellow",
+      "target": "blue",
+      "weight": -1.13,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "yellow",
+      "target": "purple",
+      "weight": -1.13,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "green",
+      "target": "blue",
+      "weight": -1.213,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "green",
+      "target": "purple",
+      "weight": -1.047,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "purple",
+      "target": "red",
+      "weight": -1.298,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "purple",
+      "target": "green",
+      "weight": -1.119,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "purple",
+      "target": "blue",
+      "weight": -1.423,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "purple",
+      "target": "white",
+      "weight": -1.07,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "black",
+      "target": "red",
+      "weight": -1.254,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "black",
+      "target": "yellow",
+      "weight": -1.347,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "black",
+      "target": "green",
+      "weight": -1.048,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "black",
+      "target": "blue",
+      "weight": -1.191,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "black",
+      "target": "purple",
+      "weight": -1.359,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "black",
+      "target": "white",
+      "weight": 1.519,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "white",
+      "target": "red",
+      "weight": -1.139,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "white",
+      "target": "green",
+      "weight": -1.478,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "white",
+      "target": "blue",
+      "weight": -1.21,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "white",
+      "target": "purple",
+      "weight": -1.458,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "white",
+      "target": "black",
+      "weight": 1.12,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "doctor",
+      "target": "teacher",
+      "weight": 1.093,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "doctor",
+      "target": "engineer",
+      "weight": 3.338,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "doctor",
+      "target": "chef",
+      "weight": -4.036,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "doctor",
+      "target": "pilot",
+      "weight": -2.913,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "doctor",
+      "target": "nurse",
+      "weight": 1.742,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "teacher",
+      "target": "doctor",
+      "weight": -1.249,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "teacher",
+      "target": "engineer",
+      "weight": 2.873,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "teacher",
+      "target": "chef",
+      "weight": -3.415,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "teacher",
+      "target": "pilot",
+      "weight": -3.291,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "engineer",
+      "target": "doctor",
+      "weight": -1.575,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "engineer",
+      "target": "teacher",
+      "weight": 1.046,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "engineer",
+      "target": "chef",
+      "weight": -4.359,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "engineer",
+      "target": "pilot",
+      "weight": -3.187,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "engineer",
+      "target": "nurse",
+      "weight": -1.482,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "lawyer",
+      "target": "teacher",
+      "weight": 1.39,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "lawyer",
+      "target": "engineer",
+      "weight": 2.817,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "lawyer",
+      "target": "chef",
+      "weight": -4.211,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "lawyer",
+      "target": "pilot",
+      "weight": -3.024,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "chef",
+      "target": "doctor",
+      "weight": -2.632,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "chef",
+      "target": "engineer",
+      "weight": 2.869,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "chef",
+      "target": "lawyer",
+      "weight": -1.116,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "chef",
+      "target": "pilot",
+      "weight": -3.002,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "chef",
+      "target": "nurse",
+      "weight": -2.24,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "pilot",
+      "target": "doctor",
+      "weight": -3.441,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "pilot",
+      "target": "engineer",
+      "weight": 4.038,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "pilot",
+      "target": "lawyer",
+      "weight": -1.771,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "pilot",
+      "target": "chef",
+      "weight": -3.734,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "pilot",
+      "target": "nurse",
+      "weight": -1.201,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "farmer",
+      "target": "doctor",
+      "weight": -2.764,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "farmer",
+      "target": "teacher",
+      "weight": 1.075,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "farmer",
+      "target": "engineer",
+      "weight": 2.785,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "farmer",
+      "target": "lawyer",
+      "weight": -1.126,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "farmer",
+      "target": "chef",
+      "weight": -2.675,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "farmer",
+      "target": "pilot",
+      "weight": -3.158,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "farmer",
+      "target": "nurse",
+      "weight": -2.307,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "nurse",
+      "target": "doctor",
+      "weight": -1.1,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "nurse",
+      "target": "teacher",
+      "weight": 1.184,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "nurse",
+      "target": "engineer",
+      "weight": 2.48,
+      "kind": "excitatory",
+      "layer": 29
+    },
+    {
+      "source": "nurse",
+      "target": "lawyer",
+      "weight": -1.18,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "nurse",
+      "target": "chef",
+      "weight": -4.204,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "nurse",
+      "target": "pilot",
+      "weight": -3.452,
+      "kind": "inhibitory",
+      "layer": 29
+    },
+    {
+      "source": "France",
+      "target": "Canada",
+      "weight": 1.512,
+      "kind": "excitatory",
+      "layer": 24
+    },
+    {
+      "source": "France",
+      "target": "India",
+      "weight": -1.8,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "France",
+      "target": "Kenya",
+      "weight": -2.867,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "France",
+      "target": "Norway",
+      "weight": -1.22,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Japan",
+      "target": "France",
+      "weight": -1.572,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Japan",
+      "target": "Canada",
+      "weight": 1.245,
+      "kind": "excitatory",
+      "layer": 24
+    },
+    {
+      "source": "Japan",
+      "target": "India",
+      "weight": -1.492,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Japan",
+      "target": "Kenya",
+      "weight": -2.273,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Japan",
+      "target": "Norway",
+      "weight": -1.594,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Brazil",
+      "target": "France",
+      "weight": -1.329,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Brazil",
+      "target": "India",
+      "weight": -1.74,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Brazil",
+      "target": "Kenya",
+      "weight": -3.026,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Brazil",
+      "target": "Norway",
+      "weight": -1.566,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Egypt",
+      "target": "France",
+      "weight": -1.809,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Egypt",
+      "target": "Japan",
+      "weight": -1.255,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Egypt",
+      "target": "Brazil",
+      "weight": -1.072,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Egypt",
+      "target": "India",
+      "weight": -1.898,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Egypt",
+      "target": "Norway",
+      "weight": -2.175,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Canada",
+      "target": "Egypt",
+      "weight": -1.089,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Canada",
+      "target": "India",
+      "weight": -1.754,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Canada",
+      "target": "Kenya",
+      "weight": -2.035,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "India",
+      "target": "France",
+      "weight": -1.672,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "India",
+      "target": "Kenya",
+      "weight": -1.489,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "India",
+      "target": "Norway",
+      "weight": -1.895,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Kenya",
+      "target": "France",
+      "weight": -2.266,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Kenya",
+      "target": "Japan",
+      "weight": -1.061,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Kenya",
+      "target": "India",
+      "weight": -2.065,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Kenya",
+      "target": "Norway",
+      "weight": -1.324,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Norway",
+      "target": "Brazil",
+      "weight": -1.761,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Norway",
+      "target": "Egypt",
+      "weight": -2.406,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Norway",
+      "target": "Canada",
+      "weight": 1.9,
+      "kind": "excitatory",
+      "layer": 24
+    },
+    {
+      "source": "Norway",
+      "target": "India",
+      "weight": -3.123,
+      "kind": "inhibitory",
+      "layer": 24
+    },
+    {
+      "source": "Norway",
+      "target": "Kenya",
+      "weight": -3.212,
+      "kind": "inhibitory",
+      "layer": 24
+    }
   ]
 }
