@@ -54,3 +54,15 @@ def get_concept(name: str) -> dict:
     if not path.exists():
         raise HTTPException(status_code=404, detail=f"no concept set named {name!r}")
     return json.loads(path.read_text())
+
+
+@app.get("/api/graph")
+def get_graph() -> dict:
+    """The current extracted graph (demo data until you run an extraction)."""
+    if not GRAPH_PATH.exists():
+        raise HTTPException(status_code=404, detail="no graph has been extracted yet")
+    return json.loads(GRAPH_PATH.read_text())
+
+
+# Mounted last so /api/* wins; html=True serves index.html at "/".
+app.mount("/", StaticFiles(directory=ROOT / "static", html=True), name="static")
