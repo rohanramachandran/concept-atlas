@@ -136,6 +136,28 @@ g.prune(min_weight=0.05)
 g.save("static/graph.json")
 ```
 
+## Results
+
+Reproducible runs on gpt2 and Llama-3.1-8B (4-bit MLX) live in
+[experiments/](experiments/), with figures, tables, and raw JSON in
+[experiments/results.md](experiments/results.md). Headlines, measured on an
+M5 MacBook (chance is 0.125 everywhere):
+
+| concept set | gpt2 peak acc (layer) | Llama-3.1-8B peak acc (layer) |
+|---|---|---|
+| colors | 0.81 (L0) | 0.61 (L29) |
+| professions | 0.95 (L11) | 0.86 (L29) |
+| countries | 0.91 (L11) | 0.93 (L24) |
+
+![Llama probe accuracy by layer](experiments/results/probes-llama.png)
+
+Patching passes its built-in sanity check on both models: patching an item's
+own activations into a neutral prompt strongly boosts that item (diagonal
+median +4.6 on gpt2, +5.3 on Llama) while cross-item effects are an order of
+magnitude smaller and mostly inhibitory. One structural regularity replicates
+across both models: black and white excite each other while suppressing the
+chromatic colors.
+
 ## The explorer (`static/`)
 
 A single-page D3 force graph, dark scientific aesthetic, no build step:

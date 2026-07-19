@@ -1,5 +1,14 @@
 # Decisions
 
+## 2026-07-19 (experiments)
+
+- Concept sets went from 4 to 12 templates each (96 prompts per set) so validation splits stop being coin flips; probe accuracies are means over 3 seeds with the spread reported.
+- Patching uses one shared base prompt per set (the template prefix that stops right before the item), so all source-target effects are measured against the same baseline and one patched forward serves every target as a logit readout. 8 sources means 17 forwards total instead of 270.
+- The diagonal is the built-in sanity check: patching an item's own activations must strongly boost that item. It does, on both models, by roughly an order of magnitude over off-diagonal effects; results would not have been published otherwise.
+- The per-target metric is first-token logit minus the mean over other items, with a guard that fails the run if two items share a first token.
+- Probes capture at the final prompt token while templates vary item position, so early-layer peaks (colors on gpt2, layer 0 on Llama) likely reflect surface token identity; this caveat is stated in results.md rather than smoothed over.
+- Findings are framed as measurements under this prompt distribution, not model-general claims. The one cross-model regularity worth noting (black and white mutually excitatory, both suppressing chromatic colors) replicated without being sought.
+
 ## 2026-07-19 (scaling past gpt2)
 
 - Model access now goes through a backend interface returning plain numpy arrays, so probes, patching, and the graph never touch framework specifics. Two backends: torch (forward hooks) and MLX (quantized).
