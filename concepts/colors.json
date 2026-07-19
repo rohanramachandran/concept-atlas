@@ -1,0 +1,10 @@
+{
+  "name": "colors",
+  "items": ["red", "orange", "yellow", "green", "blue", "purple", "black", "white"],
+  "templates": [
+    "The color of the object was {}.",
+    "She painted the wall {}.",
+    "The {} car parked outside.",
+    "Everything in the room was {}."
+  ]
+}
