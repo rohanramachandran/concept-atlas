@@ -29,3 +29,28 @@ app = FastAPI(
 @app.get("/api/health")
 def health() -> dict:
     return {"status": "ok"}
+
+
+@app.get("/api/concepts")
+def list_concepts() -> list[dict]:
+    """Summaries of every seed concept set in ``concepts/``."""
+    sets = []
+    for path in sorted(CONCEPTS_DIR.glob("*.json")):
+        data = json.loads(path.read_text())
+        sets.append(
+            {
+                "name": data["name"],
+                "n_items": len(data["items"]),
+                "n_templates": len(data["templates"]),
+                "items": data["items"],
+            }
+        )
+    return sets
+
+
+@app.get("/api/concepts/{name}")
+def get_concept(name: str) -> dict:
+    path = CONCEPTS_DIR / f"{name}.json"
+    if not path.exists():
+        raise HTTPException(status_code=404, detail=f"no concept set named {name!r}")
+    return json.loads(path.read_text())
