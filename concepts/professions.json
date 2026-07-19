@@ -1,0 +1,10 @@
+{
+  "name": "professions",
+  "items": ["doctor", "teacher", "engineer", "lawyer", "chef", "pilot", "farmer", "nurse"],
+  "templates": [
+    "She worked as a {} downtown.",
+    "My neighbor is a {}.",
+    "The {} finished a long shift.",
+    "He trained for years to become a {}."
+  ]
+}
