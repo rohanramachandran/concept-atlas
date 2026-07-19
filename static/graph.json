@@ -1,0 +1,34 @@
+{
+  "meta": { "model": "gpt2 (demo data)", "format": "concept-atlas/v1" },
+  "nodes": [
+    { "id": "red", "name": "red", "group": "colors", "layer": 6, "accuracy": 0.94 },
+    { "id": "blue", "name": "blue", "group": "colors", "layer": 6, "accuracy": 0.92 },
+    { "id": "green", "name": "green", "group": "colors", "layer": 5, "accuracy": 0.90 },
+    { "id": "purple", "name": "purple", "group": "colors", "layer": 7, "accuracy": 0.83 },
+    { "id": "doctor", "name": "doctor", "group": "professions", "layer": 8, "accuracy": 0.91 },
+    { "id": "nurse", "name": "nurse", "group": "professions", "layer": 8, "accuracy": 0.89 },
+    { "id": "engineer", "name": "engineer", "group": "professions", "layer": 9, "accuracy": 0.87 },
+    { "id": "chef", "name": "chef", "group": "professions", "layer": 7, "accuracy": 0.85 },
+    { "id": "France", "name": "France", "group": "countries", "layer": 9, "accuracy": 0.95 },
+    { "id": "Japan", "name": "Japan", "group": "countries", "layer": 9, "accuracy": 0.96 },
+    { "id": "Brazil", "name": "Brazil", "group": "countries", "layer": 10, "accuracy": 0.93 },
+    { "id": "Kenya", "name": "Kenya", "group": "countries", "layer": 10, "accuracy": 0.88 }
+  ],
+  "links": [
+    { "source": "red", "target": "blue", "weight": -0.31, "kind": "inhibitory", "layer": 6 },
+    { "source": "blue", "target": "green", "weight": 0.22, "kind": "excitatory", "layer": 6 },
+    { "source": "red", "target": "purple", "weight": 0.27, "kind": "excitatory", "layer": 6 },
+    { "source": "blue", "target": "purple", "weight": 0.24, "kind": "excitatory", "layer": 6 },
+    { "source": "doctor", "target": "nurse", "weight": 0.44, "kind": "excitatory", "layer": 8 },
+    { "source": "nurse", "target": "doctor", "weight": 0.38, "kind": "excitatory", "layer": 8 },
+    { "source": "doctor", "target": "engineer", "weight": -0.12, "kind": "inhibitory", "layer": 8 },
+    { "source": "chef", "target": "doctor", "weight": -0.08, "kind": "inhibitory", "layer": 8 },
+    { "source": "France", "target": "Japan", "weight": 0.19, "kind": "excitatory", "layer": 9 },
+    { "source": "Japan", "target": "Brazil", "weight": 0.15, "kind": "excitatory", "layer": 9 },
+    { "source": "France", "target": "Kenya", "weight": 0.11, "kind": "excitatory", "layer": 9 },
+    { "source": "Brazil", "target": "Kenya", "weight": 0.17, "kind": "excitatory", "layer": 10 },
+    { "source": "France", "target": "chef", "weight": 0.21, "kind": "excitatory", "layer": 9 },
+    { "source": "Japan", "target": "engineer", "weight": 0.13, "kind": "excitatory", "layer": 9 },
+    { "source": "doctor", "target": "red", "weight": -0.06, "kind": "inhibitory", "layer": 7 }
+  ]
+}
