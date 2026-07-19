@@ -31,3 +31,29 @@ class CausalEdge:
     weight: float       # signed effect size from activation patching
     kind: str           # "excitatory" (weight > 0) or "inhibitory" (weight < 0)
     layer: int          # layer at which the patch was applied
+
+
+@dataclass
+class ConceptGraph:
+    """Container with pruning and (de)serialization."""
+
+    model_name: str = "unknown"
+    nodes: list[ConceptNode] = field(default_factory=list)
+    edges: list[CausalEdge] = field(default_factory=list)
+
+    def add_node(self, node: ConceptNode) -> None:
+        if any(n.id == node.id for n in self.nodes):
+            raise ValueError(f"duplicate node id: {node.id!r}")
+        self.nodes.append(node)
+
+    def add_edge(self, source: str, target: str, weight: float, layer: int) -> None:
+        ids = {n.id for n in self.nodes}
+        for endpoint in (source, target):
+            if endpoint not in ids:
+                raise ValueError(f"edge endpoint {endpoint!r} is not a known node")
+        kind = "excitatory" if weight > 0 else "inhibitory"
+        self.edges.append(CausalEdge(source, target, weight, kind, layer))
+
+    def prune(self, min_weight: float) -> None:
+        """Drop edges with |weight| below ``min_weight``."""
+        self.edges = [e for e in self.edges if abs(e.weight) >= min_weight]
