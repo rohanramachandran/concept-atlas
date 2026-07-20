@@ -9,12 +9,20 @@ from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")
+matplotlib.rcParams.update({
+    "figure.facecolor": "#0b1220", "axes.facecolor": "#0b1220",
+    "savefig.facecolor": "#0b1220", "text.color": "#e6edf3",
+    "axes.labelcolor": "#cbd5e1", "xtick.color": "#8b98ab",
+    "ytick.color": "#8b98ab", "axes.edgecolor": "#2b3648",
+    "grid.color": "#1c2536", "axes.grid": True, "grid.linewidth": 0.6,
+    "axes.titlecolor": "#e6edf3", "legend.frameon": False,
+})
 import matplotlib.pyplot as plt
 import numpy as np
 
 from experiments.common import CONCEPT_SETS, RESULTS_DIR
 
-SET_COLORS = {"colors": "#d62728", "professions": "#1f77b4", "countries": "#2ca02c"}
+SET_COLORS = {"colors": "#38bdf8", "professions": "#f59e0b", "countries": "#34d399"}
 
 
 def probe_figure(probes: dict, out: Path) -> None:
@@ -23,12 +31,12 @@ def probe_figure(probes: dict, out: Path) -> None:
         layers = np.array(data["layers"])
         mean = np.array(data["acc_mean"])
         spread = np.array(data["acc_std"])
-        color = SET_COLORS.get(set_name, "#555555")
+        color = SET_COLORS.get(set_name, "#94a3b8")
         ax.plot(layers, mean, label=set_name, color=color, linewidth=1.8)
         ax.fill_between(layers, mean - spread, mean + spread, color=color, alpha=0.18)
         ax.scatter([data["home_layer"]], [data["home_accuracy"]], color=color, zorder=5, s=28)
     chance = 1.0 / 8
-    ax.axhline(chance, color="#888888", linestyle="--", linewidth=1, label="chance")
+    ax.axhline(chance, color="#64748b", linestyle="--", linewidth=1, label="chance")
     ax.set_xlabel("layer")
     ax.set_ylabel("probe accuracy (mean over seeds)")
     ax.set_ylim(0, 1.02)
