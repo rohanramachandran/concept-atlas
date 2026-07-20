@@ -1,0 +1,58 @@
+<svg width="1160" height="380" viewBox="0 0 1160 380" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+  <rect width="1160" height="380" rx="10" fill="#0b1220"/>
+  <!-- step 1: locate -->
+  <text x="40" y="48" fill="#e6edf3" font-size="16">1. locate</text>
+  <text x="40" y="68" fill="#8b98ab" font-size="12">train a linear probe on every layer</text>
+  <g>
+    <rect x="40" y="90" width="150" height="26" rx="4" fill="#111c30" stroke="#3b4a63"/>
+    <rect x="40" y="124" width="150" height="26" rx="4" fill="#111c30" stroke="#3b4a63"/>
+    <rect x="40" y="158" width="150" height="26" rx="4" fill="#111c30" stroke="#38bdf8" stroke-width="2"/>
+    <rect x="40" y="192" width="150" height="26" rx="4" fill="#111c30" stroke="#3b4a63"/>
+    <rect x="40" y="226" width="150" height="26" rx="4" fill="#111c30" stroke="#3b4a63"/>
+    <text x="52" y="285" fill="#8b98ab" font-size="12">"She painted the</text>
+    <text x="52" y="302" fill="#8b98ab" font-size="12">wall red"</text>
+    <text x="200" y="176" fill="#38bdf8" font-size="12">layer L</text>
+  </g>
+  <polyline points="255,250 275,240 295,225 315,170 335,120 355,135" fill="none" stroke="#38bdf8" stroke-width="2"/>
+  <circle cx="335" cy="120" r="5" fill="#f59e0b"/>
+  <line x1="255" y1="255" x2="360" y2="255" stroke="#3b4a63"/>
+  <text x="252" y="278" fill="#8b98ab" font-size="12">probe accuracy by layer</text>
+  <text x="300" y="105" fill="#f59e0b" font-size="12">home layer</text>
+  <!-- step 2: intervene -->
+  <text x="440" y="48" fill="#e6edf3" font-size="16">2. intervene</text>
+  <text x="440" y="68" fill="#8b98ab" font-size="12">splice those activations into another run</text>
+  <rect x="440" y="95" width="240" height="46" rx="6" fill="#111c30" stroke="#3b4a63"/>
+  <text x="454" y="115" fill="#cbd5e1" font-size="13">"...wall red"  forward pass</text>
+  <text x="454" y="132" fill="#8b98ab" font-size="12">record activations at layer L</text>
+  <rect x="440" y="205" width="240" height="46" rx="6" fill="#111c30" stroke="#3b4a63"/>
+  <text x="454" y="225" fill="#cbd5e1" font-size="13">"The color was ..."</text>
+  <text x="454" y="242" fill="#8b98ab" font-size="12">neutral prompt, patched at L</text>
+  <line x1="560" y1="141" x2="560" y2="205" stroke="#f59e0b" stroke-width="2"/>
+  <path d="M 560 205 l -5 -10 h 10 z" fill="#f59e0b"/>
+  <text x="572" y="178" fill="#f59e0b" font-size="12">overwrite</text>
+  <line x1="680" y1="228" x2="740" y2="228" stroke="#8b98ab" stroke-width="1.5"/>
+  <path d="M 740 228 l -9 -4.5 v 9 z" fill="#8b98ab"/>
+  <text x="440" y="295" fill="#8b98ab" font-size="12">effect = shift in the model's next-word</text>
+  <text x="440" y="312" fill="#8b98ab" font-size="12">preferences vs the unpatched run</text>
+  <!-- step 3: graph -->
+  <text x="820" y="48" fill="#e6edf3" font-size="16">3. graph</text>
+  <text x="820" y="68" fill="#8b98ab" font-size="12">nodes: probed concepts, edges: measured effects</text>
+  <g stroke-width="2">
+    <line x1="880" y1="140" x2="990" y2="110" stroke="#38bdf8"/>
+    <line x1="880" y1="140" x2="940" y2="230" stroke="#f59e0b"/>
+    <line x1="990" y1="110" x2="1070" y2="200" stroke="#f59e0b"/>
+    <line x1="940" y1="230" x2="1070" y2="200" stroke="#38bdf8"/>
+  </g>
+  <circle cx="880" cy="140" r="14" fill="#111c30" stroke="#cbd5e1" stroke-width="1.5"/>
+  <circle cx="990" cy="110" r="11" fill="#111c30" stroke="#cbd5e1" stroke-width="1.5"/>
+  <circle cx="940" cy="230" r="12" fill="#111c30" stroke="#cbd5e1" stroke-width="1.5"/>
+  <circle cx="1070" cy="200" r="14" fill="#111c30" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="856" y="170" fill="#cbd5e1" font-size="12">black</text>
+  <text x="972" y="92" fill="#cbd5e1" font-size="12">white</text>
+  <text x="908" y="260" fill="#cbd5e1" font-size="12">red</text>
+  <text x="1050" y="232" fill="#cbd5e1" font-size="12">blue</text>
+  <line x1="820" y1="300" x2="850" y2="300" stroke="#38bdf8" stroke-width="2"/>
+  <text x="860" y="305" fill="#8b98ab" font-size="12">excitatory</text>
+  <line x1="960" y1="300" x2="990" y2="300" stroke="#f59e0b" stroke-width="2"/>
+  <text x="1000" y="305" fill="#8b98ab" font-size="12">inhibitory</text>
+</svg>
